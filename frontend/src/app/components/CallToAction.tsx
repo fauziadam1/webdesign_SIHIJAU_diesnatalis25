@@ -16,12 +16,10 @@ export default function CallToAction() {
           </div>
 
           <div className="flex gap-4 justify-center items-center">
-            <Button size="lg" className="flex items-center group bg-primary">
+            <Button size="lg" className="group bg-primary hover:bg-primary/90" rightIcon={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}>
               Daftar Sekarang
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="secondary" size="lg">
-              <Mail className="w-5 h-5" />
+            <Button variant="secondary" size="lg" rightIcon={<Mail className="w-5 h-5"/>}>
               Hubungi Kami
             </Button>
           </div>

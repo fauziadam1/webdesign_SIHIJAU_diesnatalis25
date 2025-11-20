@@ -43,7 +43,9 @@ const iconSize = {
 
 const baseStyles = {
   root:
-    "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all hover:shadow-lg/5 focus:outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed select-none",
+    "inline-flex items-center cursor-pointer justify-center rounded-xl font-medium transition-all " +
+    "hover:shadow-lg/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
+    "disabled:opacity-60 disabled:cursor-not-allowed select-none gap-2",
   sizes: {
     sm: "px-3 py-1.5 text-sm",
     md: "px-4 py-2 text-base",
@@ -89,11 +91,10 @@ const Button = forwardRef<
     className
   );
 
-  const iconClass = cx("btn-icon flex-shrink-0", iconSize[size]);
+  const iconClass = cx("flex items-center justify-center", iconSize[size]);
 
   const content = (
     <div className="flex items-center gap-2">
-      {/* LEFT ICON OR LOADING SPINNER */}
       {loading ? (
         <svg
           className={cx("animate-spin", iconClass)}
@@ -119,11 +120,11 @@ const Button = forwardRef<
         leftIcon && <span className={iconClass}>{leftIcon}</span>
       )}
 
-      {/* TEXT (hidden visually but keeps layout stable) */}
       <span className={loading ? "opacity-0" : ""}>{children}</span>
 
-      {/* RIGHT ICON */}
-      {!loading && rightIcon && <span className={iconClass}>{rightIcon}</span>}
+      {!loading && rightIcon && (
+        <span className={iconClass}>{rightIcon}</span>
+      )}
     </div>
   );
 

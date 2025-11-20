@@ -17,7 +17,7 @@ export function Card({
 }: CardProps) {
   const variantClasses = {
     default: "bg-card text-card-foreground",
-    outline: "border-2 border-border bg-background",
+    outline: "border border-border-secondary bg-background",
     subtle: "bg-muted text-muted-foreground",
   };
 

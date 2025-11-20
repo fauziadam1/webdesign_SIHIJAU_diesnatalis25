@@ -1,78 +1,78 @@
-import { Card, CardContent } from "./ui/Card";
-import { Newspaper, Wine, Package, Battery } from "lucide-react";
+import { Card } from "./ui/Card";
+import { Wine, FileText, Box, Battery } from "lucide-react";
 
 const wasteTypes = [
   {
-    icon: Newspaper,
-    name: "Kertas",
-    items: ["Koran", "Majalah", "Kardus", "Buku"],
-    color: "text-amber-600",
-    bgColor: "bg-amber-50 dark:bg-amber-950/20",
-  },
-  {
     icon: Wine,
     name: "Plastik",
-    items: ["Botol plastik", "Kantong plastik", "Kemasan", "Galon"],
-    color: "text-blue-600",
-    bgColor: "bg-blue-50 dark:bg-blue-950/20",
+    price: "Rp 2.000 - 5.000/kg",
+    items: ["Botol plastik", "Gelas plastik", "Kantong plastik", "Ember bekas"],
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    icon: Package,
+    icon: FileText,
+    name: "Kertas",
+    price: "Rp 1.500 - 3.000/kg",
+    items: ["Koran bekas", "Majalah", "Kardus", "Buku tulis"],
+    color: "from-amber-500 to-orange-500",
+  },
+  {
+    icon: Box,
     name: "Logam",
-    items: ["Kaleng", "Aluminium", "Besi", "Tembaga"],
-    color: "text-slate-600",
-    bgColor: "bg-slate-50 dark:bg-slate-950/20",
+    price: "Rp 5.000 - 10.000/kg",
+    items: ["Kaleng minuman", "Besi tua", "Aluminium", "Tembaga"],
+    color: "from-gray-500 to-slate-600",
   },
   {
     icon: Battery,
     name: "Elektronik",
-    items: ["Baterai", "Kabel", "Komponen", "Gadget"],
-    color: "text-purple-600",
-    bgColor: "bg-purple-50 dark:bg-purple-950/20",
+    price: "Harga bervariasi",
+    items: ["Kabel bekas", "Baterai", "PCB", "Komponen elektronik"],
+    color: "from-violet-500 to-purple-500",
   },
 ];
 
 export default function WasteTypes() {
   return (
-    <section className="py-20 bg-background">
+    <section id="jenis-sampah" className="py-20 lg:py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Jenis Sampah yang Diterima
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Berbagai jenis sampah yang dapat Anda setorkan ke bank sampah
+            Berbagai jenis sampah daur ulang yang dapat Anda tukarkan dengan reward
           </p>
         </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {wasteTypes.map((type, index) => (
-            <Card 
-              key={index}
-              variant="outline"
-              shadow="none"
-              className="border-border bg-card hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
-            >
-              <CardContent className="p-6 space-y-4">
-                <div className={`w-16 h-16 rounded-xl ${type.bgColor} flex items-center justify-center`}>
-                  <type.icon className={`w-8 h-8 ${type.color}`} />
+        
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {wasteTypes.map((type, index) => {
+            const Icon = type.icon;
+            return (
+              <Card
+                key={index}
+                variant="outline"
+                shadow="none"
+                className="p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${type.color} mb-4`}>
+                  <Icon className="h-7 w-7 text-white" />
                 </div>
                 
-                <h3 className="text-xl font-semibold text-foreground">
-                  {type.name}
-                </h3>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{type.name}</h3>
+                <p className="text-primary font-medium mb-4">{type.price}</p>
                 
                 <ul className="space-y-2">
-                  {type.items.map((item, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  {type.items.map((item, i) => (
+                    <li key={i} className="text-sm text-muted-foreground flex items-start">
+                      <span className="mr-2 text-primary">•</span>
                       {item}
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

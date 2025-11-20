@@ -1,21 +1,19 @@
 import Button from "./ui/Button";
-import { Recycle } from "lucide-react";
+import { Leaf, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-hero">
+    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-hero">
       <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent" />
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full">
-              <Recycle className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-secondary-foreground">
-                Solusi Pengelolaan Sampah Modern
-              </span>
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+              <Leaf className="w-4 h-4" />
+              <span className="text-sm font-medium">Solusi Lingkungan Berkelanjutan</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
@@ -29,8 +27,8 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Link href="/auth">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Mulai Sekarang
+                <Button size="lg" className="group bg-primary hover:bg-primary/90" rightIcon={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}>
+                  Daftar Sekarang
                 </Button>
               </Link>
               <Link href="/dashboard">
@@ -40,15 +38,17 @@ export default function Hero() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 pt-8">
+            <div className="flex items-center gap-8 pt-4">
               <div className="space-y-1">
                 <div className="text-3xl font-bold text-primary">500+</div>
                 <div className="text-sm text-muted-foreground">Anggota Aktif</div>
               </div>
+              <div className="h-12 w-px bg-gray-300" />
               <div className="space-y-1">
                 <div className="text-3xl font-bold text-primary">2.5 Ton</div>
                 <div className="text-sm text-muted-foreground">Sampah Terkelola</div>
               </div>
+              <div className="h-12 w-px bg-gray-300" />
               <div className="space-y-1">
                 <div className="text-3xl font-bold text-primary">95%</div>
                 <div className="text-sm text-muted-foreground">Daur Ulang</div>

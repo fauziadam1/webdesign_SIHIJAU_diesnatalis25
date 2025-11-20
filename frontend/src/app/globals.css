@@ -19,6 +19,7 @@
   --destructive: #E64545;
   --destructive-foreground: #FFFFFF;
   --border: #E8F5EC;
+  --border-secondary: #e7e7e7;
   --input: #E8F5EC;
   --ring: #1CA152;
 
@@ -93,6 +94,7 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
+  --color-border-secondary: var(--border-secondary);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
@@ -111,6 +113,10 @@
   --sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --sidebar-border: var(--sidebar-border);
   --sidebar-ring: var(--sidebar-ring);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
