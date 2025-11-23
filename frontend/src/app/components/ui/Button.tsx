@@ -94,10 +94,10 @@ const Button = forwardRef<
   const iconClass = cx("flex items-center justify-center", iconSize[size]);
 
   const content = (
-    <div className="flex items-center gap-2">
-      {loading ? (
+    <span className="inline-flex items-center justify-center gap-2">
+      {loading && (
         <svg
-          className={cx("animate-spin", iconClass)}
+          className={cx("animate-spin align-middle", iconClass)}
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -116,17 +116,13 @@ const Button = forwardRef<
             strokeLinecap="round"
           />
         </svg>
-      ) : (
-        leftIcon && <span className={iconClass}>{leftIcon}</span>
       )}
-
-      <span className={loading ? "opacity-0" : ""}>{children}</span>
-
-      {!loading && rightIcon && (
-        <span className={iconClass}>{rightIcon}</span>
-      )}
-    </div>
+      <span>{children}</span>
+    </span>
   );
+
+
+
 
   if (isAnchor) {
     const { href, target, rel, ...anchorRest } = rest as ButtonAsAnchor;

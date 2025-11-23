@@ -1,7 +1,7 @@
-import Button from "./ui/Button";
-import { Leaf, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "./ui/Button";
+import { Leaf, ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -26,7 +26,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Link href="/auth">
+              <Link href="/auth/login">
                 <Button size="lg" className="group bg-primary hover:bg-primary/90" rightIcon={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}>
                   Daftar Sekarang
                 </Button>
