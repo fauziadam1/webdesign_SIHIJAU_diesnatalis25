@@ -155,7 +155,7 @@ export default function JenisSampahManagement() {
                 </div>
                 <Button
                     onClick={() => setShowModal(true)}
-                    className="group relative px-6 py-3 bg-primary hover:bg-primary/90 transition-all duration-300 font-medium"
+                    className="group relative bg-primary hover:bg-primary/90 transition-all duration-300 font-medium"
                 >
                     <div className="flex items-center gap-2">
                         <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />

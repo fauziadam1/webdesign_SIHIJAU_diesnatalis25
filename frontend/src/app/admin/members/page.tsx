@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import { Search, UserPlus, X } from 'lucide-react';
+import Button from '@/app/components/ui/Button';
 import { Card } from '@/app/components/ui/Card';
+import { Search, UserPlus, X } from 'lucide-react';
 
 export default function AnggotaManagement() {
     const [showModal, setShowModal] = useState(false);
@@ -121,13 +122,15 @@ export default function AnggotaManagement() {
                         <h1 className="text-4xl font-bold text-foreground mb-2">Anggota</h1>
                         <p className="text-gray-600">Kelola data anggota bank sampah</p>
                     </div>
-                    <button
+                    <Button
                         onClick={() => setShowModal(true)}
-                        className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium"
+                        className="font-medium bg-primary hover:bg-primary/90 transition-colors"
                     >
-                        <UserPlus size={20} />
-                        Tambah Anggota
-                    </button>
+                        <div className='flex items-center'>
+                            <UserPlus size={18} className='mr-2'/>
+                            Tambah Anggota
+                        </div>
+                    </Button>
                 </div>
             </div>
 
