@@ -1,19 +1,20 @@
 'use client'
+import Link from 'next/link';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Users, TrendingUp, Package, DollarSign, Settings, LogOut, User, BarChart3, ChevronLeft } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [activeMenu, setActiveMenu] = useState('dashboard');
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const pathname = usePathname();
 
   const menuItems = [
-    { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
-    { id: 'transaksi', icon: TrendingUp, label: 'Transaksi' },
-    { id: 'anggota', icon: Users, label: 'Anggota' },
-    { id: 'jenis', icon: Package, label: 'Jenis Sampah' },
-    { id: 'pengaturan', icon: Settings, label: 'Pengaturan' },
+    { id: 'dashboard', icon: BarChart3, label: 'Dashboard', href: '/admin/dashboardAdmin' },
+    { id: 'transaksi', icon: TrendingUp, label: 'Transaksi', href: '/admin/transactions' },
+    { id: 'anggota', icon: Users, label: 'Anggota', href: '/admin/members' },
+    { id: 'jenis', icon: Package, label: 'Jenis Sampah', href: '/admin/types' },
   ];
 
   return (
@@ -58,29 +59,30 @@ export default function DashboardLayout({
             Menu Utama
           </p>
           <nav className="space-y-1 px-3">
-            {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setActiveMenu(item.id)}
-                className={`group relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${activeMenu === item.id
-                    ? 'bg-green-50 text-green-700'
-                    : 'text-gray-600 hover:bg-gray-50'
-                  } ${isCollapsed ? 'justify-center' : 'justify-start'}`}
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span
-                  className={`whitespace-nowrap transition-all duration-300 ${isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-                    }`}
+            {menuItems.map((item) => {
+              const isActive = pathname.startsWith(item.href);
+
+              return (
+                <Link
+                  href={item.href}
+                  key={item.id}
+                  className={`group relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-green-50 text-green-700' : 'text-gray-600 hover:bg-gray-50'} ${isCollapsed ? 'justify-center' : 'justify-start'}`}
                 >
-                  {item.label}
-                </span>
-                {isCollapsed && (
-                  <span className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50 shadow-lg">
+                  <item.icon className="w-5 h-5 shrink-0" />
+                  <span
+                    className={`whitespace-nowrap transition-all duration-300 ${isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'}`}
+                  >
                     {item.label}
                   </span>
-                )}
-              </button>
-            ))}
+
+                  {isCollapsed && (
+                    <span className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50 shadow-lg">
+                      {item.label}
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
@@ -91,25 +93,6 @@ export default function DashboardLayout({
           >
             Akun
           </p>
-
-          <button
-            className={`group relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 mb-1 ${isCollapsed ? 'justify-center' : 'justify-start'
-              }`}
-          >
-            <User className="w-5 h-5 flex-shrink-0" />
-            <span
-              className={`whitespace-nowrap transition-all duration-300 ${isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-                }`}
-            >
-              Profil
-            </span>
-            {isCollapsed && (
-              <span className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50 shadow-lg">
-                Profil
-              </span>
-            )}
-          </button>
-
           <button
             className={`group relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 ${isCollapsed ? 'justify-center' : 'justify-start'
               }`}

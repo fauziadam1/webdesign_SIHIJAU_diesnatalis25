@@ -5,6 +5,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "outline" | "subtle";
   rounded?: "sm" | "md" | "lg" | "xl";
   shadow?: "none" | "sm" | "md" | "lg";
+  padding?: "none" | "sm" | "md" | "lg" | "xl";
 }
 
 export function Card({
@@ -13,6 +14,7 @@ export function Card({
   variant = "default",
   rounded = "lg",
   shadow = "md",
+  padding = "md",
   ...props
 }: CardProps) {
   const variantClasses = {
@@ -35,13 +37,22 @@ export function Card({
     lg: "shadow-lg",
   };
 
+  const paddingClasses = {
+    none: "p-0",
+    sm: "p-1",
+    md: "p-2",
+    lg: "p-4",
+    xl: "p-6",
+  };
+
   return (
     <div
       className={cn(
-        "p-2 transition-all duration-150",
+        "transition-all duration-150",
         variantClasses[variant],
         roundedClasses[rounded],
         shadowClasses[shadow],
+        paddingClasses[padding],
         className
       )}
       {...props}
@@ -94,6 +105,9 @@ export function CardFooter({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("mt-4 flex items-center justify-end gap-2", className)} {...props} />
+    <div
+      className={cn("mt-4 flex items-center justify-end gap-2", className)}
+      {...props}
+    />
   );
 }
