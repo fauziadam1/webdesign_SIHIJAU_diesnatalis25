@@ -1,8 +1,9 @@
 import { Recycle } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border py-12">
+    <footer className="bg-card border-t border-border py-6">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
@@ -20,20 +21,20 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Tentang</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Tentang Kami</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Cara Kerja</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Manfaat</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">FAQ</a></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Tentang Kami</Link></li>
+              <li><Link href="#cara-kerja" className="hover:text-primary transition-colors">Cara Kerja</Link></li>
+              <li><Link href="#manfaat" className="hover:text-primary transition-colors">Manfaat</Link></li>
+              <li><Link href="#FAQ" className="hover:text-primary transition-colors">FAQ</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold text-foreground mb-4">Layanan</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Jemput Sampah</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Drop Point</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Edukasi</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Komunitas</a></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Jemput Sampah</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Drop Point</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Edukasi</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Komunitas</Link></li>
             </ul>
           </div>
 
@@ -49,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Bank Sampah. Semua hak dilindungi undang-undang.</p>
+          <p>&copy; 2025 Bank Sampah. Semua hak dilindungi undang-undang.</p>
         </div>
       </div>
     </footer>

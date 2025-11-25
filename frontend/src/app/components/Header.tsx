@@ -1,4 +1,4 @@
-import { Recycle } from "lucide-react";
+import Link from "next/link";
 import Button from "./ui/Button";
 
 const Header = () => {
@@ -7,21 +7,21 @@ const Header = () => {
             <div className="flex items-center py-5">
 
                 <nav className="hidden md:flex items-center gap-8">
-                    <a href="#beranda" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Beranda
-                    </a>
-                    <a href="#cara-kerja" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    </Link>
+                    <Link href="#cara-kerja" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Cara Kerja
-                    </a>
-                    <a href="#manfaat" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    </Link>
+                    <Link href="#manfaat" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Manfaat
-                    </a>
-                    <a href="#jenis-sampah" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    </Link>
+                    <Link href="#jenis-sampah" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Jenis Sampah
-                    </a>
-                    <a href="#kontak" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    </Link>
+                    <Link href="#kontak" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Kontak
-                    </a>
+                    </Link>
                     <Button size="sm" className="ml-4">
                         Gabung Sekarang
                     </Button>
