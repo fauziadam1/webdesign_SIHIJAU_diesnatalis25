@@ -47,7 +47,7 @@ const Benefits = () => {
             return (
               <Card key={index} variant="outline" shadow="none" className="bg-card hover:shadow-eco hover:-translate-y-1 transition-transform duration-300">
                 <CardContent className="p-6 text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center shadow-lg`}>
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-linear-to-br ${benefit.gradient} flex items-center justify-center shadow-lg`}>
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">

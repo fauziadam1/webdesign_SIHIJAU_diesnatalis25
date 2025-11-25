@@ -1,9 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import Button from '@/app/components/ui/Button';
 import { Card } from '@/app/components/ui/Card';
-import { User, Wallet, TrendingUp, Award, Calendar, Package, Leaf, Target, Edit2, Camera } from 'lucide-react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import { User, Wallet, TrendingUp, Award, Calendar, Package, Leaf, Target, Camera } from 'lucide-react';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 export default function UserProfile() {
     const [userData] = useState({
@@ -79,14 +78,14 @@ export default function UserProfile() {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
+        <div className="min-h-screen bg-linear-to-br from-green-50 via-white to-emerald-50">
             <div className="max-w-7xl mx-auto px-8 py-8">
                 <Card variant='outline' shadow='none' padding='none' className="overflow-hidden mb-8">
-                    <div className="bg-gradient-to-r from-green-600 to-emerald-600 h-32 relative">
+                    <div className="bg-linear-to-r from-green-600 to-emerald-600 h-32 relative">
                         <div className="absolute -bottom-16 left-8 flex items-end gap-6">
                             <div className="relative group">
                                 <div className="w-32 h-32 rounded-2xl bg-white p-1 shadow-xl">
-                                    <div className="w-full h-full rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                                    <div className="w-full h-full rounded-xl bg-linear-to-br from-green-100 to-emerald-100 flex items-center justify-center">
                                         <User size={48} className="text-green-600" />
                                     </div>
                                 </div>
@@ -123,7 +122,7 @@ export default function UserProfile() {
                                 </div>
                             </div>
 
-                            <div className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl flex items-center gap-2 shadow-lg">
+                            <div className="px-6 py-3 bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-xl flex items-center gap-2 shadow-lg">
                                 <Award size={20} />
                                 <span className="font-bold">{userData.achievement}</span>
                             </div>
@@ -139,7 +138,7 @@ export default function UserProfile() {
                             key={index}
                             className="p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} mb-4`}>
+                            <div className={`inline-flex p-3 rounded-xl bg-linear-to-br ${stat.color} mb-4`}>
                                 <stat.icon size={24} className="text-white" />
                             </div>
                             <p className="text-gray-600 text-sm font-medium mb-1">{stat.label}</p>

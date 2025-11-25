@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React, { useState } from 'react';
 import Button from '@/app/components/ui/Button';
@@ -125,21 +126,21 @@ export default function JenisSampahManagement() {
     const typesData = [
         {
             title: "Total Kategori",
-            class: 'p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl',
+            class: 'p-3 bg-linear-to-br from-green-500 to-emerald-600 rounded-xl',
             content: categories.length,
             icon: <Package size={24} className="text-white" />,
 
         },
         {
             title: "Jenis Sampah",
-            class: 'p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl',
+            class: 'p-3 bg-linear-to-br from-blue-500 to-blue-600 rounded-xl',
             content: totalItems,
             icon: <TrendingUp size={24} className="text-white" />,
 
         },
         {
             title: "Total Stok",
-            class: 'p-3 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl',
+            class: 'p-3 bg-linear-to-br from-purple-500 to-purple-600 rounded-xl',
             content: `${totalStock.toLocaleString()} kg`,
             icon: <Package size={24} className="text-white" />,
 
@@ -184,7 +185,7 @@ export default function JenisSampahManagement() {
                     <button
                         onClick={() => setActiveTab('all')}
                         className={`px-6 py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap ${activeTab === 'all'
-                            ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30'
+                            ? 'bg-linear-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30'
                             : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                             }`}
                     >
@@ -195,7 +196,7 @@ export default function JenisSampahManagement() {
                             key={cat.id}
                             onClick={() => setActiveTab(cat.name.toLowerCase())}
                             className={`px-6 py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap flex items-center gap-2 ${activeTab === cat.name.toLowerCase()
-                                ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
+                                ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
                                 : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                 }`}
                         >
@@ -213,7 +214,7 @@ export default function JenisSampahManagement() {
                             padding='none'
                             className="overflow-hidden hover:shadow-eco hover:-translate-y-1 transition-all duration-300"
                         >
-                            <div className={`bg-gradient-to-r ${category.color} p-6 text-white relative`}>
+                            <div className={`bg-linear-to-r ${category.color} p-6 text-white relative`}>
                                 <div className="absolute top-0 right-0 opacity-10 text-8xl">
                                     {category.icon}
                                 </div>
@@ -305,7 +306,7 @@ export default function JenisSampahManagement() {
             {showModal && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
                     <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in duration-300">
-                        <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 text-white">
+                        <div className="bg-linear-to-r from-green-600 to-emerald-600 p-6 text-white">
                             <div className="flex justify-between items-center">
                                 <div>
                                     <h2 className="text-2xl font-bold mb-1">Tambah Jenis Sampah</h2>
@@ -379,7 +380,7 @@ export default function JenisSampahManagement() {
 
                             <button
                                 onClick={handleSubmit}
-                                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3.5 rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:scale-[1.02] font-semibold"
+                                className="w-full bg-linear-to-r from-green-600 to-emerald-600 text-white py-3.5 rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:scale-[1.02] font-semibold"
                             >
                                 Simpan Jenis Sampah
                             </button>
