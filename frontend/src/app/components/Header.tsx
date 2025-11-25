@@ -22,9 +22,11 @@ const Header = () => {
                     <Link href="#kontak" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Kontak
                     </Link>
-                    <Button size="sm" className="ml-4 group bg-primary hover:bg-primary/90">
-                        Login
-                    </Button>
+                    <Link href="/auth/login">
+                        <Button size="sm" className="ml-4 group bg-primary hover:bg-primary/90">
+                            Login
+                        </Button>
+                    </Link>
                 </nav>
             </div>
         </header>

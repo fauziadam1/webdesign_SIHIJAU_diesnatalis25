@@ -155,7 +155,7 @@ export default function Auth() {
                 <label className='font-medium'>Password</label>
                 <input
                   type="password"
-                  className="w-full h-10 border border-border-s px-3 rounded"
+                  className="w-full h-10 border border-border-secondary px-3 rounded"
                   placeholder="••••••••"
                   value={signupPassword}
                   onChange={(e) => setSignupPassword(e.target.value)}
