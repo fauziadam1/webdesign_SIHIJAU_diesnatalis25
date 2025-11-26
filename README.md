@@ -1,4 +1,4 @@
-# Bank Sampah – SIHIJAU
+# Bank Sampah – Trash2Cash ID
 
 Website untuk pengelolaan bank sampah dan edukasi lingkungan yang ramah pengguna. Fitur utama:
 - Beranda dengan hero, cara kerja, manfaat, jenis sampah, tips edukasi, dan lokasi.
@@ -21,6 +21,7 @@ npm run dev
 
 - Buka http://localhost:3000
 - Halaman default mengarah ke /user (beranda pengguna)
+- Halaman Profile User: /user/profile
 - Area admin demo: /admin/dashboard
 
 ## Build & Production
