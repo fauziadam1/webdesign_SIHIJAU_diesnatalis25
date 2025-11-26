@@ -16,6 +16,10 @@ export default function Auth() {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [signupFullName, setSignupFullName] = useState('');
+  const [signupPhone, setSignupPhone] = useState('');
+  const [signupPhoneCode, setSignupPhoneCode] = useState('+62');
+  const [signupAddress, setSignupAddress] = useState('');
+  const [signupCity, setSignupCity] = useState('');
 
   const router = useRouter();
 
@@ -61,6 +65,10 @@ export default function Auth() {
       setSignupEmail('');
       setSignupPassword('');
       setSignupFullName('');
+      setSignupPhone('');
+      setSignupPhoneCode('+62');
+      setSignupAddress('');
+      setSignupCity('');
       setMode('login');
       setIsLoading(false);
     }, 1000);
@@ -148,6 +156,72 @@ export default function Auth() {
                   value={signupEmail}
                   onChange={(e) => setSignupEmail(e.target.value)}
                   disabled={isLoading}
+                />
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label className='font-medium'>Nomor HP</label>
+                <div className="flex gap-2">
+                  <select
+                    className="h-10 border border-border-secondary px-3 rounded bg-white appearance-none cursor-pointer hover:border-gray-400 transition-colors pr-8 bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27currentColor%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e')] bg-[length:1.2em] bg-[right_0.5rem_center] bg-no-repeat"
+                    value={signupPhoneCode}
+                    onChange={(e) => setSignupPhoneCode(e.target.value)}
+                    disabled={isLoading}
+                  >
+                    <option value="+62">🇮🇩 +62</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+65">🇸🇬 +65</option>
+                    <option value="+60">🇲🇾 +60</option>
+                    <option value="+61">🇦🇺 +61</option>
+                  </select>
+                  <input
+                    type="tel"
+                    className="flex-1 h-10 border border-border-secondary px-3 rounded hover:border-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="812345678"
+                    value={signupPhone}
+                    onChange={(e) => setSignupPhone(e.target.value)}
+                    disabled={isLoading}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label className='font-medium'>Kota</label>
+                <select
+                  className="w-full h-10 border border-border-secondary px-3 rounded bg-white appearance-none cursor-pointer hover:border-gray-400 transition-colors pr-8 bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27currentColor%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e')] bg-[length:1.2em] bg-[right_0.5rem_center] bg-no-repeat focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  value={signupCity}
+                  onChange={(e) => setSignupCity(e.target.value)}
+                  disabled={isLoading}
+                >
+                  <option value="">Pilih Kota</option>
+                  <option value="Jakarta">Jakarta</option>
+                  <option value="Surabaya">Surabaya</option>
+                  <option value="Bandung">Bandung</option>
+                  <option value="Medan">Medan</option>
+                  <option value="Semarang">Semarang</option>
+                  <option value="Makassar">Makassar</option>
+                  <option value="Palembang">Palembang</option>
+                  <option value="Tangerang">Tangerang</option>
+                  <option value="Depok">Depok</option>
+                  <option value="Bekasi">Bekasi</option>
+                  <option value="Yogyakarta">Yogyakarta</option>
+                  <option value="Malang">Malang</option>
+                  <option value="Bogor">Bogor</option>
+                  <option value="Denpasar">Denpasar</option>
+                  <option value="Batam">Batam</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label className='font-medium'>Alamat Lengkap</label>
+                <textarea
+                  className="w-full border border-border-secondary px-3 py-2 rounded hover:border-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                  placeholder="Jl. Contoh No. 123, RT/RW, Kelurahan, Kecamatan"
+                  value={signupAddress}
+                  onChange={(e) => setSignupAddress(e.target.value)}
+                  disabled={isLoading}
+                  rows={3}
                 />
               </div>
 
