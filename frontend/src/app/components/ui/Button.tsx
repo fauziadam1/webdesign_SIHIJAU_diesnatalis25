@@ -75,7 +75,9 @@ const Button = forwardRef<
     fullWidth = false,
     className,
     children,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     leftIcon,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rightIcon,
     ariaLabel,
     ...rest

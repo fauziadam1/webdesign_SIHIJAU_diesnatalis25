@@ -14,6 +14,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     } else if (user.role !== "admin") {
       router.push("/not-authorized");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <DashboardLayout>{children}</DashboardLayout>;
