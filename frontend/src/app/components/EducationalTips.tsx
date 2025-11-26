@@ -73,7 +73,7 @@ export default function EducationalTips() {
             const Icon = tip.icon;
             return (
               <Card key={index} variant="outline" shadow="none" className="p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1">
-                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${tip.color} mb-4`}>
+                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${tip.color} mb-4`}>
                   <Icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">{tip.title}</h3>

@@ -55,7 +55,7 @@ export default function WasteTypes() {
                 shadow="none"
                 className="p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
               >
-                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${type.color} mb-4`}>
+                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${type.color} mb-4`}>
                   <Icon className="h-7 w-7 text-white" />
                 </div>
                 

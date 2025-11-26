@@ -9,7 +9,7 @@ export default function JenisSampah() {
     const [showModal, setShowModal] = useState(false);
     const [activeTab, setActiveTab] = useState('all');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     const [formData, setFormData] = useState({
         namaJenis: '',
@@ -84,7 +84,7 @@ export default function JenisSampah() {
     }, []);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+    const handleInputChange = (e: { target: { name: any; value: any } }) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -134,13 +134,15 @@ export default function JenisSampah() {
         setShowModal(false);
     };
 
-    const filteredCategories = activeTab === 'all'
-        ? categories
-        : categories.filter(cat => cat.name.toLowerCase() === activeTab);
+    const filteredCategories =
+        activeTab === 'all'
+            ? categories
+            : categories.filter(cat => cat.name.toLowerCase() === activeTab);
 
     const totalItems = categories.reduce((sum, cat) => sum + cat.items.length, 0);
-    const totalStock = categories.reduce((sum, cat) =>
-        sum + cat.items.reduce((s, item) => s + item.stock, 0), 0
+    const totalStock = categories.reduce(
+        (sum, cat) => sum + cat.items.reduce((s, item) => s + item.stock, 0),
+        0
     );
 
     const typesData = [
