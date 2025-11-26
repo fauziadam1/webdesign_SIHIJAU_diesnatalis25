@@ -165,7 +165,7 @@ export default function Auth() {
                 className="w-full bg-primary hover:bg-primary/90"
                 loading={isLoading}
               >
-                {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Login'}
+                Login
               </Button>
 
               <p className="text-center text-sm">

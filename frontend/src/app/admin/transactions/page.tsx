@@ -1,8 +1,8 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card } from "@/app/components/ui/Card";
 import Button from "@/app/components/ui/Button";
-import { Search, Download, Filter, Plus, ChevronDown, X } from "lucide-react";
+import { Search, Download, Filter, Plus, ChevronDown, X, Check } from "lucide-react";
 
 const dummyMembers = [
     { value: "M001", label: "Ibu Siti Aminah (M001)" },
@@ -36,6 +36,9 @@ const Transactions = () => {
     const [memberDropdownOpen, setMemberDropdownOpen] = useState(false);
     const [wasteDropdownOpen, setWasteDropdownOpen] = useState(false);
 
+    const memberDropdownRef = useRef<HTMLDivElement>(null);
+    const wasteDropdownRef = useRef<HTMLDivElement>(null);
+
     const [memberId, setMemberId] = useState("");
     const [wasteTypeId, setWasteTypeId] = useState("");
     const [weight, setWeight] = useState("");
@@ -46,6 +49,21 @@ const Transactions = () => {
     const totalValue = selectedWaste && weight
         ? (selectedWaste.price * parseFloat(weight)).toLocaleString('id-ID')
         : "0";
+
+    // Close dropdowns when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (memberDropdownRef.current && !memberDropdownRef.current.contains(event.target as Node)) {
+                setMemberDropdownOpen(false);
+            }
+            if (wasteDropdownRef.current && !wasteDropdownRef.current.contains(event.target as Node)) {
+                setWasteDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const handleSubmit = () => {
         if (!memberId || !wasteTypeId || !weight) {
@@ -144,91 +162,108 @@ const Transactions = () => {
             </div>
 
             {modalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
-                    <div className="fixed inset-0 bg-black/60" onClick={() => setModalOpen(false)} />
-                    <div className="relative z-50 w-full max-w-lg mx-4 bg-white rounded-lg shadow-xl p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-semibold text-gray-900">Buat Transaksi Baru</h3>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md animate-in zoom-in duration-200">
+                        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                            <h2 className="text-xl font-semibold text-gray-800">Buat Transaksi Baru</h2>
                             <button
-                                onClick={() => setModalOpen(false)}
-                                className="text-gray-400 hover:text-gray-600 transition-colors"
+                                onClick={() => {
+                                    setModalOpen(false);
+                                    setMemberId("");
+                                    setWasteTypeId("");
+                                    setWeight("");
+                                }}
+                                className="p-1 cursor-pointer hover:bg-gray-100 rounded-lg transition-colors"
                             >
-                                <X className="w-5 h-5" />
+                                <X size={20} className="text-gray-500" />
                             </button>
                         </div>
 
-                        <div className="space-y-4">
+                        <div className="p-6 space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Anggota
                                 </label>
-                                <div className="relative">
+                                <div className="relative" ref={memberDropdownRef}>
                                     <button
                                         type="button"
                                         onClick={() => setMemberDropdownOpen(!memberDropdownOpen)}
-                                        className="flex h-10 w-full items-center justify-between rounded-md border border-green-500 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        className="w-full px-4 py-2.5 text-left bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all flex items-center justify-between"
                                     >
-                                        <span className={selectedMember ? "text-gray-900" : "text-gray-500"}>
-                                            {selectedMember ? selectedMember.label : "Pilih anggota"}
+                                        <span className={selectedMember ? 'text-gray-900' : 'text-gray-500'}>
+                                            {selectedMember ? selectedMember.label : 'Pilih anggota'}
                                         </span>
-                                        <ChevronDown className="h-4 w-4 text-gray-500" />
+                                        <ChevronDown
+                                            size={18}
+                                            className={`text-gray-400 transition-transform duration-200 ${memberDropdownOpen ? 'rotate-180' : ''}`}
+                                        />
                                     </button>
 
                                     {memberDropdownOpen && (
-                                        <>
-                                            <div className="fixed inset-0 z-40" onClick={() => setMemberDropdownOpen(false)} />
-                                            <div className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg">
-                                                {dummyMembers.map((option) => (
-                                                    <div
-                                                        key={option.value}
-                                                        onClick={() => {
-                                                            setMemberId(option.value);
-                                                            setMemberDropdownOpen(false);
-                                                        }}
-                                                        className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 text-gray-900"
-                                                    >
-                                                        {option.label}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </>
+                                        <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto">
+                                            {dummyMembers.map((member) => (
+                                                <button
+                                                    key={member.value}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setMemberId(member.value);
+                                                        setMemberDropdownOpen(false);
+                                                    }}
+                                                    className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center justify-between group"
+                                                >
+                                                    <span className="text-gray-700 group-hover:text-gray-900">
+                                                        {member.label}
+                                                    </span>
+                                                    {memberId === member.value && (
+                                                        <Check size={16} className="text-green-600" />
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
                                     )}
                                 </div>
                             </div>
+
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Jenis Sampah
                                 </label>
-                                <div className="relative">
+                                <div className="relative" ref={wasteDropdownRef}>
                                     <button
                                         type="button"
                                         onClick={() => setWasteDropdownOpen(!wasteDropdownOpen)}
-                                        className="flex h-10 w-full items-center justify-between rounded-md border border-green-500 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        className="w-full px-4 py-2.5 text-left bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all flex items-center justify-between"
                                     >
-                                        <span className={selectedWaste ? "text-gray-900" : "text-gray-500"}>
-                                            {selectedWaste ? selectedWaste.label : "Pilih jenis sampah"}
+                                        <span className={selectedWaste ? 'text-gray-900' : 'text-gray-500'}>
+                                            {selectedWaste ? selectedWaste.label : 'Pilih jenis sampah'}
                                         </span>
-                                        <ChevronDown className="h-4 w-4 text-gray-500" />
+                                        <ChevronDown
+                                            size={18}
+                                            className={`text-gray-400 transition-transform duration-200 ${wasteDropdownOpen ? 'rotate-180' : ''}`}
+                                        />
                                     </button>
 
                                     {wasteDropdownOpen && (
-                                        <>
-                                            <div className="fixed inset-0 z-40" onClick={() => setWasteDropdownOpen(false)} />
-                                            <div className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg">
-                                                {dummyWasteTypes.map((option) => (
-                                                    <div
-                                                        key={option.value}
-                                                        onClick={() => {
-                                                            setWasteTypeId(option.value);
-                                                            setWasteDropdownOpen(false);
-                                                        }}
-                                                        className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 text-gray-900"
-                                                    >
-                                                        {option.label}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </>
+                                        <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto">
+                                            {dummyWasteTypes.map((waste) => (
+                                                <button
+                                                    key={waste.value}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setWasteTypeId(waste.value);
+                                                        setWasteDropdownOpen(false);
+                                                    }}
+                                                    className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center justify-between group"
+                                                >
+                                                    <span className="text-gray-700 group-hover:text-gray-900">
+                                                        {waste.label}
+                                                    </span>
+                                                    {wasteTypeId === waste.value && (
+                                                        <Check size={16} className="text-green-600" />
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -243,7 +278,7 @@ const Transactions = () => {
                                     value={weight}
                                     onChange={(e) => setWeight(e.target.value)}
                                     placeholder="0.0"
-                                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full px-4 py-2.5 text-gray-900 bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                 />
                             </div>
 
@@ -254,12 +289,13 @@ const Transactions = () => {
                                 </div>
                             )}
 
-                            <button
+                            <Button
+                                type="submit"
                                 onClick={handleSubmit}
-                                className="w-full mt-6 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-green-600 text-white hover:bg-green-700 transition-colors"
+                                className="w-full py-3 mt-2 bg-primary hover:bg-primary/90"
                             >
                                 Simpan Transaksi
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </div>

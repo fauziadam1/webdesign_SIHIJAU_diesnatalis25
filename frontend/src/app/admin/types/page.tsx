@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from '@/app/components/ui/Button';
 import { Card } from '@/app/components/ui/Card';
-import { Plus, X, Trash2, Edit2, TrendingUp, Package } from 'lucide-react';
+import { Plus, X, Trash2, Edit2, TrendingUp, Package, ChevronDown, Check } from 'lucide-react';
 
-export default function JenisSampahManagement() {
+export default function JenisSampah() {
     const [showModal, setShowModal] = useState(false);
     const [activeTab, setActiveTab] = useState('all');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
     const [formData, setFormData] = useState({
         namaJenis: '',
         kategori: '',
@@ -69,7 +72,16 @@ export default function JenisSampahManagement() {
         }
     ]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
 
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
@@ -78,6 +90,14 @@ export default function JenisSampahManagement() {
             ...prev,
             [name]: value
         }));
+    };
+
+    const handleSelectCategory = (categoryName: string) => {
+        setFormData(prev => ({
+            ...prev,
+            kategori: categoryName
+        }));
+        setIsDropdownOpen(false);
     };
 
     const handleSubmit = () => {
@@ -265,8 +285,8 @@ export default function JenisSampahManagement() {
 
                                                         <span
                                                             className={`text-xs font-semibold px-2 py-1 rounded-full ${item.trend.startsWith("+")
-                                                                    ? "bg-green-100 text-green-700"
-                                                                    : "bg-red-100 text-red-700"
+                                                                ? "bg-green-100 text-green-700"
+                                                                : "bg-red-100 text-red-700"
                                                                 }`}
                                                         >
                                                             {item.trend}
@@ -304,25 +324,27 @@ export default function JenisSampahManagement() {
 
             </div>
             {showModal && (
-                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in duration-300">
-                        <div className="bg-linear-to-r from-green-600 to-emerald-600 p-6 text-white">
-                            <div className="flex justify-between items-center">
-                                <div>
-                                    <h2 className="text-2xl font-bold mb-1">Tambah Jenis Sampah</h2>
-                                    <p className="text-green-100 text-sm">Isi form untuk menambahkan jenis baru</p>
-                                </div>
-                                <button
-                                    onClick={() => setShowModal(false)}
-                                    className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-                                >
-                                    <X size={24} />
-                                </button>
-                            </div>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md animate-in zoom-in duration-200">
+                        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                            <h2 className="text-xl font-semibold text-gray-800">Tambah Jenis Sampah</h2>
+                            <button
+                                onClick={() => {
+                                    setShowModal(false);
+                                    setFormData({
+                                        namaJenis: '',
+                                        kategori: '',
+                                        hargaPerKg: ''
+                                    });
+                                }}
+                                className="p-1 cursor-pointer hover:bg-gray-100 rounded-lg transition-colors"
+                            >
+                                <X size={20} className="text-gray-500" />
+                            </button>
                         </div>
-                        <div className="p-6 space-y-5">
+                        <div className="p-6 space-y-4">
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Nama Jenis Sampah
                                 </label>
                                 <input
@@ -331,38 +353,54 @@ export default function JenisSampahManagement() {
                                     value={formData.namaJenis}
                                     onChange={handleInputChange}
                                     placeholder="Contoh: Plastik PET"
-                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-2.5 text-gray-900 bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Kategori
                                 </label>
-                                <div className="relative">
-                                    <select
-                                        name="kategori"
-                                        value={formData.kategori}
-                                        onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-white transition-all"
+                                <div className="relative" ref={dropdownRef}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                        className="w-full px-4 py-2.5 text-left bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all flex items-center justify-between"
                                     >
-                                        <option value="">Pilih kategori</option>
-                                        {categories.map((cat) => (
-                                            <option key={cat.id} value={cat.name}>
-                                                {cat.icon} {cat.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
-                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </div>
+                                        <span className={formData.kategori ? 'text-gray-900' : 'text-gray-500'}>
+                                            {formData.kategori || 'Pilih kategori'}
+                                        </span>
+                                        <ChevronDown
+                                            size={18}
+                                            className={`text-gray-400 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                                        />
+                                    </button>
+
+                                    {isDropdownOpen && (
+                                        <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto">
+                                            {categories.map((cat) => (
+                                                <button
+                                                    key={cat.id}
+                                                    type="button"
+                                                    onClick={() => handleSelectCategory(cat.name)}
+                                                    className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center justify-between group"
+                                                >
+                                                    <span className="text-gray-700 group-hover:text-gray-900 flex items-center gap-2">
+                                                        <span>{cat.icon}</span>
+                                                        {cat.name}
+                                                    </span>
+                                                    {formData.kategori === cat.name && (
+                                                        <Check size={16} className="text-green-600" />
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Harga per Kg (Rp)
                                 </label>
                                 <div className="relative">
@@ -373,17 +411,18 @@ export default function JenisSampahManagement() {
                                         value={formData.hargaPerKg}
                                         onChange={handleInputChange}
                                         placeholder="3000"
-                                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                        className="w-full pl-12 pr-4 py-2.5 text-gray-900 bg-white border border-gray-300 rounded-lg hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                     />
                                 </div>
                             </div>
 
-                            <button
+                            <Button
+                                type='submit'
                                 onClick={handleSubmit}
-                                className="w-full bg-linear-to-r from-green-600 to-emerald-600 text-white py-3.5 rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:scale-[1.02] font-semibold"
+                                className="w-full py-3 mt-2 bg-primary hover:bg-primary/90"
                             >
-                                Simpan Jenis Sampah
-                            </button>
+                                Simpan Transaksi
+                            </Button>
                         </div>
                     </div>
                 </div>

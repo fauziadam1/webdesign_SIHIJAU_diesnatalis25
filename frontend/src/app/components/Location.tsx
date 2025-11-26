@@ -3,7 +3,7 @@ import { MapPin, Clock, Phone, Mail, TrendingUp, Users } from "lucide-react";
 
 export default function LocationInfo() {
   return (
-    <section id="kontak" className="py-20 lg:py-32 bg-muted/30">
+    <section id="kontak" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">

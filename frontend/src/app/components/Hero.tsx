@@ -28,7 +28,7 @@ export default function Hero() {
 
 
   return (
-    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-hero">
+    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-eco">
       <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent" />
 
       <div className="container mx-auto px-4 py-20 relative z-10">

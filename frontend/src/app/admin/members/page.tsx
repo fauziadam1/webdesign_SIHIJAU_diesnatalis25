@@ -122,15 +122,6 @@ export default function AnggotaManagement() {
                         <h1 className="text-4xl font-bold text-foreground mb-2">Anggota</h1>
                         <p className="text-gray-600">Kelola data anggota bank sampah</p>
                     </div>
-                    <Button
-                        onClick={() => setShowModal(true)}
-                        className="font-medium bg-primary hover:bg-primary/90 transition-colors"
-                    >
-                        <div className='flex items-center'>
-                            <UserPlus size={18} className='mr-2'/>
-                            Tambah Anggota
-                        </div>
-                    </Button>
                 </div>
             </div>
 
@@ -183,95 +174,15 @@ export default function AnggotaManagement() {
                                     <p className="text-sm font-medium text-gray-700">{anggota.saldo}</p>
                                 </div>
 
-                                <button className="w-20 text-green-600 font-medium hover:bg-green-50 rounded-lg transition-colors">
+                                <Button variant='secondary' className="hover:bg-gray-200">
                                     Detail
-                                </button>
+                                </Button>
                             </div>
 
                         </div>
                     ))}
                 </div>
             </Card>
-
-            {showModal && (
-                <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-semibold text-gray-800">Tambah Anggota Baru</h2>
-                            <button
-                                onClick={() => setShowModal(false)}
-                                className="text-gray-400 hover:text-gray-600"
-                            >
-                                <X size={24} />
-                            </button>
-                        </div>
-
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Nama Lengkap
-                                </label>
-                                <input
-                                    type="text"
-                                    name="namaLengkap"
-                                    value={formData.namaLengkap}
-                                    onChange={handleInputChange}
-                                    placeholder="Masukkan nama lengkap"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Nomor Telepon
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="nomorTelepon"
-                                    value={formData.nomorTelepon}
-                                    onChange={handleInputChange}
-                                    placeholder="0812-xxxx-xxxx"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    placeholder="contoh@email.com"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Alamat
-                                </label>
-                                <textarea
-                                    name="alamat"
-                                    value={formData.alamat}
-                                    onChange={handleInputChange}
-                                    placeholder="Masukkan alamat lengkap"
-                                    className="w-full h-30 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
-                                />
-                            </div>
-
-                            <button
-                                onClick={handleSubmit}
-                                className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium"
-                            >
-                                Simpan
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
