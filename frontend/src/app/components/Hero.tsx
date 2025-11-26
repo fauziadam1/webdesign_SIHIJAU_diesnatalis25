@@ -1,9 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Button from "./ui/Button";
 import { Leaf, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [dashboardUrl, setDashboardUrl] = useState("/auth/login");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("sihi_user_v1");
+      if (!saved) return;
+
+      const parsed = JSON.parse(saved);
+      if (!parsed?.role) return;
+
+      if (parsed.role === "admin") {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setDashboardUrl("/admin/dashboard");
+      } else {
+        setDashboardUrl("/user/profile");
+      }
+    } catch { }
+  }, []);
+
+
   return (
     <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-hero">
       <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent" />
@@ -27,11 +50,16 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Link href="/auth/login">
-                <Button size="lg" className="group bg-primary hover:bg-primary/90" rightIcon={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}>
+                <Button
+                  size="lg"
+                  className="group bg-primary hover:bg-primary/90"
+                  rightIcon={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+                >
                   Daftar Sekarang
                 </Button>
               </Link>
-              <Link href="/dashboard">
+
+              <Link href={dashboardUrl}>
                 <Button size="lg" variant="secondary">
                   Lihat Dashboard
                 </Button>
@@ -70,4 +98,4 @@ export default function Hero() {
       </div>
     </section>
   );
-};
+}

@@ -55,7 +55,7 @@ const baseStyles = {
     primary:
       "bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500",
     secondary:
-      "bg-transparent text-gray-900 hover:bg-gray-200 border border-gray-300 focus-visible:ring-gray-400",
+      "bg-transparent text-gray-900 hover:bg-accent border border-gray-300 focus-visible:ring-gray-400",
     ghost:
       "bg-transparent text-gray-900 hover:bg-gray-50 focus-visible:ring-gray-300",
     danger:
