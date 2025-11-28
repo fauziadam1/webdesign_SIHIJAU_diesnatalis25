@@ -45,15 +45,3 @@ npm install
 npm run dev
 ```
 - Buka `http://localhost:3000`
-
-## Build & Production
-```
-npm run build
-npm start
-```
-
-## Daftar Skrip
-- `npm run dev` – mode pengembangan
-- `npm run build` – build produksi
-- `npm start` – jalankan hasil build
-- `npm run lint` – linting kode
