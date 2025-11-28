@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Button from "./ui/Button";
 import { useState, useEffect } from "react";
-import { User, LogOut, Menu, X, Recycle } from "lucide-react";
+import { User, LogOut, Menu, X, Recycle, Sprout } from "lucide-react";
 import { getUser, removeUser, DummyUser } from "@/lib/auth";
 
 const Header = () => {
@@ -32,10 +32,10 @@ const Header = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between py-4">
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                            <Recycle className="w-5 h-5 text-white" />
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                            <Sprout className="w-5 h-5 text-primary" />
                         </div>
-                        <span className="font-bold text-lg text-foreground hidden sm:block">Bank Sampah</span>
+                        <span className="font-bold text-lg text-foreground hidden sm:block">Trash2Cash</span>
                     </Link>
 
                     <nav className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -43,6 +43,8 @@ const Header = () => {
                         <Link href="#tentang" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Tentang</Link>
                         <Link href="#cara-kerja" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Cara Kerja</Link>
                         <Link href="#manfaat" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Manfaat</Link>
+                        <Link href="#jenis" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Jenis Sampah</Link>
+                        <Link href="#tips" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Tips</Link>
                         <Link href="#kontak" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Kontak</Link>
 
                         {!user && (

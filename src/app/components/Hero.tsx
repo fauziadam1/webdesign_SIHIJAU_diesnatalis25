@@ -34,13 +34,13 @@ export default function Hero() {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+            {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
               <Leaf className="w-4 h-4" />
               <span className="text-sm font-medium">Solusi Lingkungan Berkelanjutan</span>
-            </div>
+            </div> */}
 
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-              Bank Sampah
+              Trash2Cash
               <span className="block text-primary mt-2">Untuk Masa Depan Lebih Hijau</span>
             </h1>
 

@@ -170,43 +170,44 @@ export default function JenisSampah() {
     ]
 
     return (
-        <div className='p-7 space-y-6'>
-            <div className="flex justify-between items-center">
+        <div className='p-4 sm:p-7 space-y-6'>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h1 className="text-4xl font-bold text-foreground mb-2">Jenis Sampah</h1>
+                    <h1 className="text-2xl sm:text-4xl font-bold text-foreground mb-2">Jenis Sampah</h1>
                     <p className="text-gray-600 text-sm">Kelola kategori dan harga sampah dengan mudah</p>
                 </div>
                 <Button
                     onClick={() => setShowModal(true)}
-                    className="group relative bg-primary hover:bg-primary/90 transition-all duration-300 font-medium"
+                    className="group relative bg-primary hover:bg-primary/90 transition-all duration-300 font-medium w-full sm:w-auto"
                 >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 justify-center">
                         <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
-                        Tambah Jenis Sampah
+                        <span className="hidden sm:inline">Tambah Jenis Sampah</span>
+                        <span className="sm:hidden">Tambah</span>
                     </div>
                 </Button>
             </div>
 
             <div className="">
-                <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
                     {typesData.map((item, index) =>
-                        <Card key={index} variant='outline' shadow='none' className="p-6 hover:shadow-eco transition-shadow">
+                        <Card key={index} variant='outline' shadow='none' className="p-4 sm:p-6 hover:shadow-eco transition-shadow">
                             <div className="flex items-center gap-4">
                                 <div className={item.class}>
                                     {item.icon}
                                 </div>
-                                <div>
-                                    <p className="text-gray-600 text-sm font-medium">{item.title}</p>
-                                    <p className="text-2xl font-bold text-gray-800">{item.content}</p>
+                                <div className="flex-1">
+                                    <p className="text-gray-600 text-xs sm:text-sm font-medium">{item.title}</p>
+                                    <p className="text-lg sm:text-2xl font-bold text-gray-800">{item.content}</p>
                                 </div>
                             </div>
                         </Card>
                     )}
                 </div>
-                <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 overflow-x-auto pb-2">
                     <button
                         onClick={() => setActiveTab('all')}
-                        className={`px-6 py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap ${activeTab === 'all'
+                        className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap ${activeTab === 'all'
                             ? 'bg-linear-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30'
                             : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                             }`}
@@ -217,17 +218,17 @@ export default function JenisSampah() {
                         <button
                             key={cat.id}
                             onClick={() => setActiveTab(cat.name.toLowerCase())}
-                            className={`px-6 py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap flex items-center gap-2 ${activeTab === cat.name.toLowerCase()
+                            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl cursor-pointer font-medium transition-all whitespace-nowrap flex items-center gap-2 ${activeTab === cat.name.toLowerCase()
                                 ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
                                 : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                 }`}
                         >
                             <span>{cat.icon}</span>
-                            {cat.name}
+                            <span className="hidden sm:inline">{cat.name}</span>
                         </button>
                     ))}
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                     {filteredCategories.map((category, idx) => (
                         <Card
                             key={category.id}
@@ -236,24 +237,24 @@ export default function JenisSampah() {
                             padding='none'
                             className="overflow-hidden hover:shadow-eco hover:-translate-y-1 transition-all duration-300"
                         >
-                            <div className={`bg-linear-to-r ${category.color} p-6 text-white relative`}>
-                                <div className="absolute top-0 right-0 opacity-10 text-8xl">
+                            <div className={`bg-linear-to-r ${category.color} p-4 sm:p-6 text-white relative`}>
+                                <div className="absolute top-0 right-0 opacity-10 text-6xl sm:text-8xl">
                                     {category.icon}
                                 </div>
 
                                 <div className="relative z-10">
                                     <div className="flex items-center justify-between mb-2">
-                                        <h3 className="text-2xl font-bold flex items-center gap-3">
-                                            <span className="text-3xl">{category.icon}</span>
-                                            {category.name}
+                                        <h3 className="text-xl sm:text-2xl font-bold flex items-center gap-3">
+                                            <span className="text-2xl sm:text-3xl">{category.icon}</span>
+                                            <span className="truncate">{category.name}</span>
                                         </h3>
 
-                                        <span className="px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">
+                                        <span className="px-3 sm:px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-semibold">
                                             {category.items.length} items
                                         </span>
                                     </div>
 
-                                    <p className="text-white/80 text-sm">
+                                    <p className="text-white/80 text-xs sm:text-sm">
                                         Total:{" "}
                                         {category.items
                                             .reduce((sum, item) => sum + item.stock, 0)
@@ -262,25 +263,25 @@ export default function JenisSampah() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="p-6">
+                            <div className="p-4 sm:p-6">
                                 <div className="space-y-3">
                                     {category.items.map((item, index) => (
                                         <Card
                                             key={index}
                                             variant="outline"
                                             shadow="none"
-                                            className="group/item px-4 py-4 bg-gray-50 hover:bg-primary/5 border border-transparent hover:border-primary/25 transition-all"
+                                            className="group/item px-3 sm:px-4 py-3 sm:py-4 bg-gray-50 hover:bg-primary/5 border border-transparent hover:border-primary/25 transition-all"
                                         >
-                                            <div className="flex items-center justify-between">
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-800 mb-1 group-hover/item:text-green-700 transition-colors">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                                                <div className="w-full sm:w-auto">
+                                                    <h4 className="font-semibold text-gray-800 mb-1 group-hover/item:text-green-700 transition-colors text-sm sm:text-base">
                                                         {item.name}
                                                     </h4>
 
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="text-lg font-bold text-green-600">
+                                                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                                        <span className="text-base sm:text-lg font-bold text-green-600">
                                                             Rp {item.price.toLocaleString("id-ID")}
-                                                            <span className="text-sm font-normal text-gray-500">
+                                                            <span className="text-xs sm:text-sm font-normal text-gray-500">
                                                                 /kg
                                                             </span>
                                                         </span>
@@ -296,12 +297,12 @@ export default function JenisSampah() {
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center gap-4">
+                                                <div className="flex items-center justify-between w-full sm:w-auto sm:flex-col sm:items-end gap-3 sm:gap-4">
                                                     <div className="text-right">
                                                         <p className="text-xs text-gray-500 mb-1">
                                                             Stok Tersedia
                                                         </p>
-                                                        <p className="text-lg font-bold text-gray-800">
+                                                        <p className="text-base sm:text-lg font-bold text-gray-800">
                                                             {item.stock.toLocaleString()} kg
                                                         </p>
                                                     </div>

@@ -34,7 +34,7 @@ const wasteTypes = [
 
 export default function WasteTypes() {
   return (
-    <section id="jenis-sampah" className="py-20 lg:py-32 bg-muted/30">
+    <section id="jenis" className="py-20 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
