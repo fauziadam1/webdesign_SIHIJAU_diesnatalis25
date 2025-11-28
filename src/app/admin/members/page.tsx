@@ -115,68 +115,70 @@ export default function AnggotaManagement() {
     );
 
     return (
-        <div className="p-7 space-y-8">
+        <div className="p-4 sm:p-6 lg:p-7 space-y-6 sm:space-y-8">
             <div>
                 <div className="flex justify-between items-start mb-2">
                     <div>
-                        <h1 className="text-4xl font-bold text-foreground mb-2">Anggota</h1>
-                        <p className="text-gray-600">Kelola data anggota bank sampah</p>
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">Anggota</h1>
+                        <p className="text-sm sm:text-base text-gray-600">Kelola data anggota bank sampah</p>
                     </div>
                 </div>
             </div>
 
-            <Card variant='outline' shadow='none' className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-800">
+            <Card variant='outline' shadow='none' className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3">
+                    <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
                         Daftar Anggota ({filteredAnggota.length})
                     </h2>
-                    <div className="relative">
+                    <div className="relative w-full sm:w-auto">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                         <input
                             type="text"
                             placeholder="Cari anggota..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent w-64"
+                            className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent w-full sm:w-64"
                         />
                     </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                     {filteredAnggota.map((anggota) => (
                         <div
                             key={anggota.id}
-                            className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors gap-3"
                         >
-                            <div className="flex items-center gap-4 flex-1">
-                                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                            <div className="flex items-center gap-3 sm:gap-4 flex-1 w-full">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base shrink-0">
                                     {anggota.initials}
                                 </div>
-                                <div>
-                                    <h3 className="font-semibold text-gray-800">{anggota.nama}</h3>
-                                    <p className="text-sm text-gray-500">{anggota.id}</p>
+                                <div className="min-w-0 flex-1">
+                                    <h3 className="text-sm sm:text-base font-semibold text-gray-800 truncate">{anggota.nama}</h3>
+                                    <p className="text-xs sm:text-sm text-gray-500">{anggota.id}</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-8">
-                                <div className="w-40">
-                                    <p className="text-xs text-gray-500 mb-1">Kontak</p>
-                                    <p className="text-sm font-medium text-gray-700">{anggota.kontak}</p>
-                                </div>
+                            <div className="w-full sm:w-auto">
+                                <div className="grid grid-cols-2 sm:flex sm:items-center gap-3 sm:gap-6 lg:gap-8">
+                                    <div className="min-w-0">
+                                        <p className="text-xs text-gray-500 mb-1">Kontak</p>
+                                        <p className="text-xs sm:text-sm font-medium text-gray-700 truncate">{anggota.kontak}</p>
+                                    </div>
 
-                                <div className="w-32">
-                                    <p className="text-xs text-gray-500 mb-1">Total Sampah</p>
-                                    <p className="text-sm font-semibold text-green-600">{anggota.totalSampah}</p>
-                                </div>
+                                    <div className="min-w-0">
+                                        <p className="text-xs text-gray-500 mb-1">Total Sampah</p>
+                                        <p className="text-xs sm:text-sm font-semibold text-green-600">{anggota.totalSampah}</p>
+                                    </div>
 
-                                <div className="w-28">
-                                    <p className="text-xs text-gray-500 mb-1">Saldo</p>
-                                    <p className="text-sm font-medium text-gray-700">{anggota.saldo}</p>
-                                </div>
+                                    <div className="min-w-0">
+                                        <p className="text-xs text-gray-500 mb-1">Saldo</p>
+                                        <p className="text-xs sm:text-sm font-medium text-gray-700 truncate">{anggota.saldo}</p>
+                                    </div>
 
-                                <Button variant='secondary' className="hover:bg-gray-200">
-                                    Detail
-                                </Button>
+                                    <Button variant='secondary' size="sm" className="hover:bg-gray-200 col-span-2 sm:col-span-1">
+                                        Detail
+                                    </Button>
+                                </div>
                             </div>
 
                         </div>

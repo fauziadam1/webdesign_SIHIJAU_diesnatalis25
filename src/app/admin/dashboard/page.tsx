@@ -56,36 +56,36 @@ const wasteTypeData = [
 
 const Dashboard = () => {
   return (
-    <div className="space-y-6 p-7">
+    <div className="space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-7">
       <div>
-        <h1 className="text-4xl font-bold text-foreground mb-2">Dashboard Overview</h1>
-        <p className="text-muted-foreground">Ringkasan data bank sampah periode Juni 2024</p>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">Dashboard Overview</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">Ringkasan data bank sampah periode Juni 2024</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {statsData.map((stat, index) => (
           <Card key={index} variant="outline" shadow="none" className="border-border hover:shadow-eco transition-shadow">
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <div className="flex items-start justify-between">
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">{stat.title}</p>
-                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="text-sm text-primary font-medium">{stat.change} dari bulan lalu</p>
+                <div className="space-y-1 sm:space-y-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.title}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs sm:text-sm text-primary font-medium">{stat.change} dari bulan lalu</p>
                 </div>
-                <div className={`w-12 h-12 rounded-lg ${stat.bgColor} flex items-center justify-center`}>
-                  <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg ${stat.bgColor} flex items-center justify-center`}>
+                  <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${stat.color}`} />
                 </div>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card variant="outline" shadow="none" className="p-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <Card variant="outline" shadow="none" className="p-4 sm:p-5">
           <CardHeader>
-            <h1 className="text-2xl font-semibold">Tren Pengumpulan Sampah</h1>
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold">Tren Pengumpulan Sampah</h1>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <LineChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-border-secondary" />
                 <XAxis dataKey="name" className="text-xs" />
@@ -109,12 +109,12 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        <Card variant="outline" shadow="none" className="p-5">
+        <Card variant="outline" shadow="none" className="p-4 sm:p-5">
           <CardHeader>
-            <h1 className="text-2xl font-semibold">Sampah per Kategori</h1>
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold">Sampah per Kategori</h1>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <BarChart data={wasteTypeData}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
                 <XAxis dataKey="name" className="text-xs" />
@@ -137,25 +137,25 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
-      <Card variant="outline" shadow="none" className="p-5">
+      <Card variant="outline" shadow="none" className="p-4 sm:p-5">
         <CardHeader>
-          <h1 className="text-2xl font-semibold">Transaksi Terbaru</h1>
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold">Transaksi Terbaru</h1>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               { name: "Ibu Siti Aminah", type: "Plastik", weight: "12.5 kg", value: "Rp 37.500", time: "2 jam lalu" },
               { name: "Bapak Ahmad Yani", type: "Kertas", weight: "8.3 kg", value: "Rp 24.900", time: "3 jam lalu" },
               { name: "Ibu Dewi Lestari", type: "Logam", weight: "5.2 kg", value: "Rp 52.000", time: "5 jam lalu" },
               { name: "Bapak Joko Susilo", type: "Plastik", weight: "15.7 kg", value: "Rp 47.100", time: "6 jam lalu" },
             ].map((transaction, index) => (
-              <div key={index} className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors">
+              <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors gap-2 sm:gap-0">
                 <div className="flex-1">
-                  <p className="font-medium text-foreground">{transaction.name}</p>
-                  <p className="text-sm text-muted-foreground">{transaction.type} • {transaction.weight}</p>
+                  <p className="text-sm sm:text-base font-medium text-foreground">{transaction.name}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{transaction.type} • {transaction.weight}</p>
                 </div>
-                <div className="text-right">
-                  <p className="font-semibold text-primary">{transaction.value}</p>
+                <div className="text-left sm:text-right">
+                  <p className="text-sm sm:text-base font-semibold text-primary">{transaction.value}</p>
                   <p className="text-xs text-muted-foreground">{transaction.time}</p>
                 </div>
               </div>

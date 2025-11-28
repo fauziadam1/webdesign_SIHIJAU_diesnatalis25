@@ -79,14 +79,14 @@ export default function UserProfile() {
 
     return (
         <div className="min-h-screen bg-linear-to-br from-green-50 via-white to-emerald-50">
-            <div className="max-w-7xl mx-auto px-8 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                 <Card variant='outline' shadow='none' padding='none' className="overflow-hidden mb-8">
-                    <div className="bg-linear-to-r from-green-600 to-emerald-600 h-32 relative">
-                        <div className="absolute -bottom-16 left-8 flex items-end gap-6">
+                    <div className="bg-linear-to-r from-green-600 to-emerald-600 h-24 sm:h-32 relative">
+                        <div className="absolute -bottom-12 sm:-bottom-16 left-4 sm:left-8 flex items-end gap-4 sm:gap-6">
                             <div className="relative group">
-                                <div className="w-32 h-32 rounded-2xl bg-white p-1 shadow-xl">
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white p-1 shadow-xl">
                                     <div className="w-full h-full rounded-xl bg-linear-to-br from-green-100 to-emerald-100 flex items-center justify-center">
-                                        <User size={48} className="text-green-600" />
+                                        <User className="w-8 h-8 sm:w-12 sm:h-12 text-green-600" />
                                     </div>
                                 </div>
                                 <button className="absolute bottom-2 right-2 p-2 bg-green-600 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
@@ -96,13 +96,13 @@ export default function UserProfile() {
                         </div>
                     </div>
 
-                    <div className="pt-20 px-8 pb-8">
-                        <div className="flex justify-between items-start">
+                    <div className="pt-16 sm:pt-20 px-4 sm:px-8 pb-6 sm:pb-8">
+                        <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                             <div>
-                                <h2 className="text-2xl font-bold text-gray-800 mb-1">{userData.nama}</h2>
-                                <p className="text-gray-600 mb-4">Member ID: {userData.memberId}</p>
+                                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1">{userData.nama}</h2>
+                                <p className="text-sm sm:text-base text-gray-600 mb-4">Member ID: {userData.memberId}</p>
 
-                                <div className="grid grid-cols-2 gap-4 text-sm">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Calendar size={16} className="text-gray-400" />
                                         <span className="text-gray-600">Bergabung: <span className="font-medium text-gray-800">{userData.joinDate}</span></span>
@@ -122,44 +122,44 @@ export default function UserProfile() {
                                 </div>
                             </div>
 
-                            <div className="px-6 py-3 bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-xl flex items-center gap-2 shadow-lg">
-                                <Award size={20} />
-                                <span className="font-bold">{userData.achievement}</span>
+                            <div className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-amber-500 to-orange-600 text-white rounded-xl flex items-center gap-2 shadow-lg">
+                                <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+                                <span className="text-sm sm:text-base font-bold">{userData.achievement}</span>
                             </div>
                         </div>
                     </div>
                 </Card>
 
-                <div className="grid grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
                     {stats.map((stat, index) => (
                         <Card
                             variant='outline'
                             shadow='none'
                             key={index}
-                            className="p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
+                            className="p-4 sm:p-6 hover:shadow-eco transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className={`inline-flex p-3 rounded-xl bg-linear-to-br ${stat.color} mb-4`}>
-                                <stat.icon size={24} className="text-white" />
+                            <div className={`inline-flex p-2 sm:p-3 rounded-xl bg-linear-to-br ${stat.color} mb-3 sm:mb-4`}>
+                                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                             </div>
-                            <p className="text-gray-600 text-sm font-medium mb-1">{stat.label}</p>
-                            <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+                            <p className="text-gray-600 text-xs sm:text-sm font-medium mb-1">{stat.label}</p>
+                            <p className="text-lg sm:text-2xl font-bold text-gray-800">{stat.value}</p>
                         </Card>
                     ))}
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 mb-8">
-                    <Card variant='outline' shadow='none' className="p-6">
-                        <div className="flex items-center justify-between mb-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                    <Card variant='outline' shadow='none' className="p-4 sm:p-6">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3">
                             <div>
-                                <h3 className="text-xl font-bold text-gray-800 mb-1">Pengumpulan Sampah Bulanan</h3>
-                                <p className="text-sm text-gray-600">Perbandingan dengan target bulanan</p>
+                                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Pengumpulan Sampah Bulanan</h3>
+                                <p className="text-xs sm:text-sm text-gray-600">Perbandingan dengan target bulanan</p>
                             </div>
                             <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-lg">
                                 <TrendingUp size={16} className="text-green-600" />
                                 <span className="text-sm font-semibold text-green-600">+18.5%</span>
                             </div>
                         </div>
-                        <ResponsiveContainer width="100%" height={280}>
+                        <ResponsiveContainer width="100%" height={250}>
                             <LineChart data={monthlyData}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                                 <XAxis
@@ -202,12 +202,12 @@ export default function UserProfile() {
                         </ResponsiveContainer>
                     </Card>
 
-                    <Card variant='outline' shadow='none' className='p-6'>
-                        <div className="mb-6">
-                            <h3 className="text-xl font-bold text-gray-800 mb-1">Distribusi Kategori Sampah</h3>
-                            <p className="text-sm text-gray-600">Persentase berdasarkan jenis sampah</p>
+                    <Card variant='outline' shadow='none' className='p-4 sm:p-6'>
+                        <div className="mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Distribusi Kategori Sampah</h3>
+                            <p className="text-xs sm:text-sm text-gray-600">Persentase berdasarkan jenis sampah</p>
                         </div>
-                        <ResponsiveContainer width="100%" height={280}>
+                        <ResponsiveContainer width="100%" height={250}>
                             <PieChart>
                                 <Pie
                                     data={categoryData}
@@ -237,13 +237,13 @@ export default function UserProfile() {
                     </Card>
                 </div>
 
-                <div className="grid grid-cols-3 gap-6">
-                    <Card variant='outline' shadow='none' className="col-span-2 p-6">
-                        <div className="mb-6">
-                            <h3 className="text-xl font-bold text-gray-800 mb-1">Perbandingan dengan Rata-rata</h3>
-                            <p className="text-sm text-gray-600">Total pengumpulan sampah Anda vs rata-rata anggota</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <Card variant='outline' shadow='none' className="lg:col-span-2 p-4 sm:p-6">
+                        <div className="mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Perbandingan dengan Rata-rata</h3>
+                            <p className="text-xs sm:text-sm text-gray-600">Total pengumpulan sampah Anda vs rata-rata anggota</p>
                         </div>
-                        <ResponsiveContainer width="100%" height={240}>
+                        <ResponsiveContainer width="100%" height={220}>
                             <BarChart data={comparisonData}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                                 <XAxis
@@ -289,10 +289,10 @@ export default function UserProfile() {
                         </div>
                     </Card>
 
-                    <Card variant='outline' shadow='none' className="p-6">
-                        <div className="mb-6">
-                            <h3 className="text-xl font-bold text-gray-800 mb-1">Pencapaian</h3>
-                            <p className="text-sm text-gray-600">Badge yang telah diraih</p>
+                    <Card variant='outline' shadow='none' className="p-4 sm:p-6">
+                        <div className="mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Pencapaian</h3>
+                            <p className="text-xs sm:text-sm text-gray-600">Badge yang telah diraih</p>
                         </div>
                         <div className="space-y-4">
                             <div className="p-4 bg-linear-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">

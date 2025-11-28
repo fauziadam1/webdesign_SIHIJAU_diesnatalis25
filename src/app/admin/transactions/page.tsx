@@ -78,36 +78,37 @@ const Transactions = () => {
     };
 
     return (
-        <div className="p-7">
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
+        <div className="p-4 sm:p-6 lg:p-7">
+            <div className="space-y-4 sm:space-y-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-4xl font-bold text-foreground mb-2">Transaksi</h1>
-                        <p className="text-gray-600 mt-1">Kelola dan pantau semua transaksi sampah</p>
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">Transaksi</h1>
+                        <p className="text-sm sm:text-base text-gray-600 mt-1">Kelola dan pantau semua transaksi sampah</p>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
                         <Button
                             onClick={() => setModalOpen(true)}
-                            className="font-medium bg-primary hover:bg-primary/90 transition-colors"
+                            className="flex-1 sm:flex-none text-sm font-medium bg-primary hover:bg-primary/90 transition-colors"
                         >
-                            <div className="flex items-center">
+                            <div className="flex items-center justify-center">
                                 <Plus className="w-4 h-4 mr-2" />
-                                Transaksi Baru
+                                <span className="hidden sm:inline">Transaksi Baru</span>
+                                <span className="sm:hidden">Baru</span>
                             </div>
                         </Button>
-                        <Button variant="secondary" className="font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors">
-                            <div className="flex items-center">
-                                <Download className="w-4 h-4 mr-2" />
-                                Export Data
+                        <Button variant="secondary" className="flex-1 sm:flex-none text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center justify-center">
+                                <Download className="w-4 h-4 sm:mr-2" />
+                                <span className="hidden sm:inline">Export Data</span>
                             </div>
                         </Button>
                     </div>
                 </div>
 
                 <Card variant="outline" shadow="none" className="">
-                    <div className="p-6 border-b border-gray-200">
+                    <div className="p-4 sm:p-6 border-b border-gray-200">
                         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                            <h2 className="text-xl font-semibold text-gray-900">Daftar Transaksi</h2>
+                            <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Daftar Transaksi</h2>
                             <div className="flex gap-2 w-full md:w-auto">
                                 <div className="relative flex-1 md:w-64">
                                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -124,28 +125,28 @@ const Transactions = () => {
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="w-full">
+                        <table className="w-full min-w-[640px]">
                             <thead className="bg-gray-50 border-b border-gray-200">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">ID Transaksi</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Anggota</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Jenis Sampah</th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">Berat (kg)</th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">Nilai (Rp)</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Status</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">ID Transaksi</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Anggota</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Jenis Sampah</th>
+                                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">Berat (kg)</th>
+                                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">Nilai (Rp)</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Status</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {transactions.map((transaction) => (
                                     <tr key={transaction.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{transaction.id}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{transaction.date}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{transaction.member}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{transaction.type}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">{transaction.weight}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">{transaction.value}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">{transaction.id}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600">{transaction.date}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600">{transaction.member}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600">{transaction.type}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600 text-right">{transaction.weight}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900 text-right">{transaction.value}</td>
+                                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${transaction.status === "Selesai"
                                                 ? "bg-green-100 text-green-800"
                                                 : "bg-yellow-100 text-yellow-800"

@@ -66,25 +66,25 @@ export default function Hero() {
               </Link>
             </div>
 
-            <div className="flex items-center gap-8 pt-4">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4">
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-primary">500+</div>
-                <div className="text-sm text-muted-foreground">Anggota Aktif</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary">500+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Anggota Aktif</div>
               </div>
               <div className="h-12 w-px bg-gray-300" />
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-primary">2.5 Ton</div>
-                <div className="text-sm text-muted-foreground">Sampah Terkelola</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary">2.5 Ton</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Sampah Terkelola</div>
               </div>
               <div className="h-12 w-px bg-gray-300" />
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-primary">95%</div>
-                <div className="text-sm text-muted-foreground">Daur Ulang</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary">95%</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Daur Ulang</div>
               </div>
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative hidden md:block">
             <div className="absolute -inset-4 bg-gradient-eco opacity-20 blur-3xl rounded-full" />
             <Image
               src="/hero-waste-bank.png"
