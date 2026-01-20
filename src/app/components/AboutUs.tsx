@@ -10,7 +10,7 @@ const AboutUs = () => {
         },
         {
             icon: Heart,
-            title: "Misi Kami",
+            title: "Misi Kamii",
             description: "Memberikan solusi pengelolaan sampah yang menguntungkan masyarakat, mengedukasi pentingnya reduce-reuse-recycle, dan berkontribusi terhadap ekonomi sirkular."
         },
         {
